@@ -18,13 +18,11 @@
 package main
 
 import (
-	"fmt"
 	"github.com/elastic/aws-ami-share/cmd"
 )
 
 var version, commit, date string
 
 func main() {
-	fmt.Printf("V: %s", version)
 	cmd.RootCmd(version, commit, date)
 }

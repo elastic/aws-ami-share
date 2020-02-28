@@ -11,12 +11,16 @@ define HELP
 
 - build:                  It will build $(NAME) for the current architecture in bin/$(REPO).
 - install:                It will install $(NAME) in the current system (by default in $(GOPATH)/bin/$(REPO)).
+- lint:                   Runs the linters.
 endef
 export HELP
-.DEFAULT: help
 
 help:
 	@echo "$$HELP"
+
+.PHONY: lint
+lint: build
+	@gofmt -d -e -s .
 
 build:
 	@go build -o bin/$(NAME) -ldflags="$(DEFAULT_LDFLAGS)"
@@ -24,4 +28,4 @@ build:
 install:
 	@go install ./...
 
-.PHONY: help build install
+.PHONY: help build install lint
